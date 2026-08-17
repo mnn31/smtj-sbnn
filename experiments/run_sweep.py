@@ -40,7 +40,8 @@ def tag(cfg):
     r0 = "inf" if np.isinf(cfg["r0"]) else cfg["r0"]
     return (f"{cfg['dataset']}_r{r0}_T{cfg['T']}_"
             f"{'stream' if cfg['streaming'] else 'reset'}_"
-            f"sd{cfg['sigma_delta']}_chip{cfg['chip_seed']}_ns{cfg['noise_seed']}")
+            f"sd{cfg['sigma_delta']}_chip{cfg['chip_seed']}_ns{cfg['noise_seed']}"
+            + cfg.get("extra", ""))
 
 
 def run_one(model, loader, cfg, sha):
