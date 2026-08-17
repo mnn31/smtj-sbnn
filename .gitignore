@@ -5,7 +5,7 @@ __pycache__/
 data/MNIST/
 data/FashionMNIST/
 data/cifar*
-results/**/*.pt
+# v2 checkpoints are tracked deliberately
 *.egg-info/
 .DS_Store
 .env

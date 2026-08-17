@@ -1,5 +1,8 @@
-"""Dataset loading. Inputs stay real-valued (standard BNN practice: only
-hidden activations are binarized); images are flattened and scaled to [0, 1].
+"""Dataset loading with a proper train/val/test split (v2).
+
+The last 5k images of the official training set form a validation split
+used for all model-selection decisions; the 10k test set is touched only
+for final reported numbers.
 """
 
 from pathlib import Path
@@ -9,6 +12,7 @@ from torch.utils.data import DataLoader, TensorDataset
 from torchvision import datasets, transforms
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
+VAL_SIZE = 5000
 
 _LOADERS = {
     "mnist": datasets.MNIST,
@@ -16,17 +20,23 @@ _LOADERS = {
 }
 
 
-def load_flat(name: str = "mnist", train: bool = True) -> TensorDataset:
-    """Return a TensorDataset of (flattened images [N, 784], labels [N])."""
+def _flat(name, train):
     ds = _LOADERS[name](DATA_DIR, train=train, download=True,
                         transform=transforms.ToTensor())
     xs = torch.stack([x for x, _ in ds]).reshape(len(ds), -1)
     ys = torch.tensor([y for _, y in ds])
-    return TensorDataset(xs, ys)
+    return xs, ys
 
 
-def loaders(name: str = "mnist", batch_size: int = 256):
-    train = DataLoader(load_flat(name, True), batch_size=batch_size,
-                       shuffle=True, drop_last=True)
-    test = DataLoader(load_flat(name, False), batch_size=1024)
-    return train, test
+def splits(name: str = "mnist"):
+    """Returns (train_x, train_y, val_x, val_y, test_x, test_y)."""
+    xs, ys = _flat(name, True)
+    tx, ty = _flat(name, False)
+    return (xs[:-VAL_SIZE], ys[:-VAL_SIZE],
+            xs[-VAL_SIZE:], ys[-VAL_SIZE:], tx, ty)
+
+
+def train_loader(name: str = "mnist", batch_size: int = 256):
+    trx, try_, *_ = splits(name)
+    return DataLoader(TensorDataset(trx, try_), batch_size=batch_size,
+                      shuffle=True, drop_last=True)

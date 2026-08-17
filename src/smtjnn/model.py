@@ -1,13 +1,10 @@
-"""Stochastic binary MLP (p-bit style: stochastic at inference, not just training).
+"""Stochastic binary MLP (p-bit style: stochastic at inference).
 
-Each hidden unit computes pre-activation I, fires s = +1 with probability
-p = (1 + tanh(I)) / 2 and s = -1 otherwise, every time it is queried.
-Training uses ideal i.i.d. uniform randomness and a straight-through
-estimator (gradient of the mean activation tanh(I)).
-
-At inference the Bernoulli draw is delegated to a pluggable
-`source.sample(p, layer)` so imperfect physical randomness (LFSR, sMTJ
-telegraph noise) can replace the ideal generator without touching weights.
+Each hidden unit fires s = +1 with probability p = (1 + tanh(I))/2 at every
+query. Training uses a straight-through estimator (gradient of the mean
+activation tanh(I)); the Bernoulli draw is delegated to a pluggable
+`source.sample(i, layer)` receiving the raw pre-activations, so physical
+randomness models (telegraph sMTJ) can compute their own dynamics from I.
 """
 
 import torch
@@ -24,7 +21,6 @@ class _StochasticSignSTE(torch.autograd.Function):
     @staticmethod
     def backward(ctx, grad_out):
         (i,) = ctx.saved_tensors
-        # d E[s] / dI = d tanh(I)/dI = sech^2(I)
         return grad_out * (1.0 - torch.tanh(i) ** 2), None
 
 
@@ -33,7 +29,7 @@ def stochastic_sign(i: torch.Tensor, u: torch.Tensor) -> torch.Tensor:
 
 
 class SBNN(nn.Module):
-    """MLP with stochastic bipolar hidden activations and a real-valued readout."""
+    """MLP with stochastic bipolar hidden activations, real-valued readout."""
 
     def __init__(self, dims=(784, 256, 128, 10)):
         super().__init__()
@@ -42,13 +38,11 @@ class SBNN(nn.Module):
             nn.Linear(a, b) for a, b in zip(dims[:-1], dims[1:])
         )
 
-    @property
-    def hidden_sizes(self):
-        return self.dims[1:-1]
-
     def forward(self, x: torch.Tensor, source=None) -> torch.Tensor:
-        """One stochastic pass. `source` supplies the randomness at inference;
-        None means ideal torch randomness (used during training)."""
+        """One stochastic pass. `source=None`: ideal torch randomness
+        (training default). Otherwise `source.sample(i, layer)` supplies
+        the draws; in training mode a straight-through surrogate keeps
+        gradients flowing through tanh(I)."""
         h = x
         for li, layer in enumerate(self.layers[:-1]):
             i = layer(h)
@@ -56,10 +50,10 @@ class SBNN(nn.Module):
                 u = torch.rand_like(i)
                 h = stochastic_sign(i, u)
             else:
-                m = torch.tanh(i)
-                p = 0.5 * (1.0 + m)
-                s = source.sample(p.detach(), layer=li)
-                # straight-through: forward value is the physical sample,
-                # gradient flows through the mean activation tanh(I)
-                h = s.detach() + m - m.detach() if self.training else s
+                s = source.sample(i, layer=li)
+                if self.training:
+                    m = torch.tanh(i)
+                    h = s.detach() + m - m.detach()
+                else:
+                    h = s
         return self.layers[-1](h)

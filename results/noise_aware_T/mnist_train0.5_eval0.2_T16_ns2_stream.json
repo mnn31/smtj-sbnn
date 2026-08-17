@@ -1,1 +1,0 @@
-{"dataset": "mnist", "train_r0": 0.5, "eval_r0": 0.2, "T": 16, "noise_seed": 2, "acc": 0.9642, "streaming": true}
