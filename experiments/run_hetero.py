@@ -30,19 +30,23 @@ def main(dataset="mnist", ckpt="sbnn_mnist_seed0.pt"):
     OUT.mkdir(parents=True, exist_ok=True)
     model = load_checkpoint(ROOT / "results" / ckpt)
     loader = DataLoader(load_flat(dataset, train=False), batch_size=1024)
-    for r0 in R0_GRID:
-        for sd in SIGMA_GRID:
-            for chip in CHIP_SEEDS:
-                path = OUT / f"{dataset}_r{r0}_sd{sd}_chip{chip}.json"
-                if path.exists():
-                    continue
-                src = TelegraphSource(r0=r0, sigma_delta=sd, chip_seed=chip,
-                                      noise_seed=chip, streaming=False)
-                acc = evaluate(model, loader, src, T=T)
-                path.write_text(json.dumps(
-                    {"dataset": dataset, "r0": r0, "sigma_delta": sd,
-                     "chip_seed": chip, "T": T, "acc": acc}))
-                print(f"r0={r0} sd={sd} chip={chip}: {acc:.4f}", flush=True)
+    for streaming in [True, False]:
+        mode = "stream" if streaming else "reset"
+        for r0 in R0_GRID:
+            for sd in SIGMA_GRID:
+                for chip in CHIP_SEEDS:
+                    path = OUT / f"{dataset}_r{r0}_sd{sd}_chip{chip}_{mode}.json"
+                    if path.exists():
+                        continue
+                    src = TelegraphSource(r0=r0, sigma_delta=sd, chip_seed=chip,
+                                          noise_seed=chip, streaming=streaming)
+                    acc = evaluate(model, loader, src, T=T)
+                    path.write_text(json.dumps(
+                        {"dataset": dataset, "r0": r0, "sigma_delta": sd,
+                         "chip_seed": chip, "T": T, "acc": acc,
+                         "streaming": streaming}))
+                    print(f"[{mode}] r0={r0} sd={sd} chip={chip}: {acc:.4f}",
+                          flush=True)
 
 
 if __name__ == "__main__":
