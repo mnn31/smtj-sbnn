@@ -104,10 +104,13 @@ def fig_e2(ds="mnist"):
 
 
 # ---------------------------------------------------------------- E3
-def eff_refresh(r0, sd, centering, n=200_000):
-    mu = -0.5 * sd ** 2 if centering == "mean-tau" else 0.0
-    delta = np.random.default_rng(0).normal(mu, sd, n)
-    return np.mean(1.0 - np.exp(-r0 * np.exp(-delta)))
+def baseline_interp(ds="mnist", T=32):
+    """Interpolator over the sigma=0 streaming curve: log(r0) -> accuracy."""
+    e2 = agg(rows("e2", ds=ds, mode="stream"), ["r0", "T"])
+    pts = sorted((r0, v[0]) for (r0, t), v in e2.items() if t == T)
+    xs = np.log([p[0] for p in pts])
+    ys = [p[1] for p in pts]
+    return lambda r0: float(np.interp(np.log(r0), xs, ys))
 
 
 def fig_e3(ds="mnist"):
@@ -131,17 +134,26 @@ def fig_e3(ds="mnist"):
                    title="solid: median-fixed\ndashed: mean-$\\tau$-fixed",
                    title_fontsize=6)
     axes[0].grid(True, lw=0.3, alpha=0.4)
-    # collapse test: accuracy vs effective refresh
+    # offset-prediction test: measured vs sigma=0 baseline at the
+    # median-device effective ratio r0_eff = r0 * e^{sd^2/2} (mean-tau)
+    # or r0 (median centering)
+    interp = baseline_interp(ds)
     for cen, mk in [("median", "o"), ("mean-tau", "s")]:
         for r0 in [0.05, 0.1, 0.2, 0.5]:
             for sd in sds:
                 if (cen, r0, sd) in e3:
-                    q = eff_refresh(r0, sd, cen)
-                    axes[1].scatter(q, e3[(cen, r0, sd)][0], s=12, marker=mk,
-                                    color=cols[r0], alpha=0.8)
-    axes[1].set_xscale("log")
-    axes[1].set_xlabel(r"effective refresh  $\mathbb{E}[1-e^{-\Delta t/\tau}]$")
-    axes[1].grid(True, which="both", lw=0.3, alpha=0.4)
+                    r_eff = r0 * (np.exp(sd ** 2 / 2)
+                                  if cen == "mean-tau" else 1.0)
+                    axes[1].scatter(interp(r_eff), e3[(cen, r0, sd)][0],
+                                    s=12, marker=mk, color=cols[r0],
+                                    alpha=0.8)
+    lim = [0.6, 1.0]
+    axes[1].plot(lim, lim, color="0.5", lw=0.7, ls="--")
+    axes[1].set_xlim(lim), axes[1].set_ylim(lim)
+    axes[1].set_xlabel("predicted from $\\sigma_\\Delta{=}0$ curve at "
+                       "$r_0\\, e^{\\sigma_\\Delta^2/2}$")
+    axes[1].set_ylabel("measured accuracy")
+    axes[1].grid(True, lw=0.3, alpha=0.4)
     fig.tight_layout()
     for ext in ("pdf", "png"):
         fig.savefig(FIGS / f"fig_e3_hetero.{ext}", bbox_inches="tight")
@@ -200,7 +212,8 @@ def fig_pareto(ds="mnist"):
     sel, test = e4_selection(ds)
     pts = []
     for (mode, r0, T), v in e2.items():
-        thr = 1.0 / (T * r0 + (SETTLE_RHO if mode == "settle" else 0.0))
+        thr = (1.0 / ((T - 1) * r0 + SETTLE_RHO) if mode == "settle"
+               else 1.0 / (T * r0))
         pts.append((thr, v[0], r0, T, mode))
     na_pts = []
     for (er, T), tr in sel.items():

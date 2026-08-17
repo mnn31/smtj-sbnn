@@ -22,7 +22,7 @@ with Autocorrelated sMTJ Randomness}
 
 \begin{abstract}
 Stochastic magnetic tunnel junctions (sMTJs) supply physically random bits
-at $\sim$0.03\,pJ per bit, roughly six orders of magnitude below software
+at $\sim$0.03\,pJ per bit, five to six orders of magnitude below software
 pseudorandom generation, making them natural entropy sources for
 probabilistic-bit (p-bit) neural hardware. A standard design rule requires
 sampling an sMTJ no faster than twice its mean dwell time so that
@@ -33,19 +33,22 @@ stochastic binary network classification on MNIST and Fashion-MNIST with
 telegraph-process sMTJ neurons and measure where accuracy actually fails.
 Operating mode, not sampling rate, is decisive. With a per-input settle of
 $\approx 4$ correlation times---a requirement we measure, not
-assume---accuracy is nearly rate-independent: $200\times$ faster-than-rule
-sampling costs under 0.7 accuracy points. In continuous streaming
-operation, stale device state carries each input's activations into the
-next, and single-sample accuracy collapses to chance. Device-to-device
-dwell-time dispersion can either harm or \emph{rescue} streaming accuracy,
-depending on whether it adds slow or fast devices: a single
-effective-refresh parameter, dominated by the fast quantile of the device
-population, approximately predicts accuracy across all dispersion models.
-Finally, correlation-aware training---backpropagating while activations are
-sampled from the correlated process---recovers most of the streaming loss
-(28\%$\to$86\% at the harshest operating point), extending the
-accuracy--throughput Pareto frontier to $2\times$ the rule-compliant
-optimum at 97\% accuracy, $4\times$ at 95\%, and $8\times$ at 90\%.
+assume---accuracy is nearly rate-independent: with 32-sample averaging,
+$200\times$ faster-than-rule sampling costs under 0.7 accuracy points. In
+continuous streaming operation, stale device state carries each input's
+activations into the next, and single-sample accuracy collapses to chance.
+Device-to-device dwell-time dispersion does not rescue streaming: at a
+fixed central fluctuation rate it is mildly harmful, and the apparently
+decisive choice is which population statistic fabrication pins---fixing
+the mean rather than the median correlation time silently multiplies every
+device's rate by $e^{\sigma_\Delta^2/2}$, a $3\times$ effect at
+$\sigma_\Delta = 1.5\,k_BT$ that outweighs dispersion itself. Finally,
+correlation-aware training---backpropagating while activations are sampled
+from the correlated process---recovers most of the streaming loss
+(28\%$\to$85\% at the harshest operating point, for a 3.3-point cost at
+nominal speed), extending the accuracy--throughput Pareto frontier to
+$2\times$ the rule-compliant optimum at 97\% accuracy, $4\times$ at 95\%,
+and $8\times$ at 90\%.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -75,8 +78,8 @@ interval exceeds about twice the \emph{mean dwell time}
 $\tau_d$~\cite{daniels2020energy}, and this ``$2\tau$ rule'' functions as a
 hard constraint: system demonstrations oversample device relaxation times
 by large factors~\cite{singh2024cmos}, and randomness quality is certified
-by statistical suites that presume i.i.d.\
-sampling~\cite{vodenicarevic2017low,sun2026superparamagnetic}. The
+against statistical test
+suites~\cite{vodenicarevic2017low,sun2026superparamagnetic}. The
 clock-versus-device-timescale trade has been characterized for sampling
 machines: autonomous Ising-machine operation requires synapse response
 faster than neuron fluctuation~\cite{sutton2020autonomous}, and in situ
@@ -98,25 +101,29 @@ nearly rate-independent: at $\rzero = 0.02$, i.e.\ $200\times$ past the
 rule, 32-sample accuracy drops only $97.7\%\to97.1\%$. In continuous
 streaming operation, stale state leaks each input's activations into the
 next input's samples and single-sample accuracy collapses to chance
-(10\%) below $\rzero \approx 0.1$; sample-averaging buys roughly a decade.
+(10\%) below $\rzero \approx 0.05$; sample-averaging buys roughly an
+order of magnitude in $\rzero$ per $32\times$ increase in samples.
 The collapse persists (indeed worsens) under a bias-independent-rate
 device variant, so it is generic staleness, not an artifact of the
 Arrhenius parameterization.
-\item \textbf{The fast quantile governs variability.} Whether
-device-to-device dwell-time dispersion hurts or helps streaming depends
-entirely on which population statistic fabrication holds fixed: with the
-median device fixed, dispersion adds a slow tail and degrades accuracy;
-with the mean correlation time fixed, dispersion adds fast devices and
-\emph{rescues} accuracy ($72\%\to94\%$ at $\rzero=0.05$,
-$\sigma_\Delta = 1.5\,k_BT$). A single effective-refresh parameter
-$\mathbb{E}[1-e^{-\Delta t/\tau}]$ approximately collapses both regimes,
-identifying the fast quantile of the device population---not its mean or
-slow tail---as the quantity a device specification should target.
+\item \textbf{The centering convention, not dispersion, governs
+variability.} Whether device-to-device dwell-time dispersion appears to
+hurt or help streaming is decided by which population statistic
+fabrication holds fixed. Because dwell time is exponential in the barrier
+offset, fixing the \emph{mean} correlation time rather than the
+\emph{median} device multiplies every device's rate by
+$e^{\sigma_\Delta^2/2}$ ($3.1\times$ at $\sigma_\Delta = 1.5\,k_BT$); this
+uniform offset explains essentially all of the apparent rescue
+($72\%\to94\%$ at $\rzero=0.05$) through the baseline
+accuracy-vs-$\rzero$ curve, while dispersion at a matched central rate
+costs 1--5 points (the slow tail dominates). A device specification must
+therefore pin the central fluctuation rate; dispersion around it is a
+second-order penalty.
 \item \textbf{Correlation-aware training extends the Pareto frontier.}
 Training while activations are sampled from the same correlated telegraph
 process (state running continuously across minibatches) recovers most of
-the streaming loss: $28\%\to86\%$ at $\rzero=0.02$ ($T{=}32$), at a
-1--3 point cost at nominal speed. With physically-accounted throughput
+the streaming loss: $28\%\to85\%$ at $\rzero=0.02$ ($T{=}32$), at a
+3.3-point cost at nominal speed (a milder variant costs 1.2 points). With physically-accounted throughput
 (settle mode pays its measured $\approx 4\tauc$ per input), the
 accuracy--throughput frontier reaches $2\times$ the best rule-compliant
 operating point at 97\% accuracy, $4\times$ at 95\%, and $8\times$ at
@@ -196,7 +203,9 @@ operating point; only the time structure changes. The correlation time is
 so saturated neurons decorrelate faster. Note the distinction between
 $\tauc$ and the mean dwell time: at $I{=}0$, $\tau_d = 1/f = 2\tauc$, so
 the Daniels $2\tau_d$ rule~\cite{daniels2020energy} corresponds to
-$\rzero \geq 4$ in our units,
+$\rzero \geq 4$ in our units (at bias the occupancy-weighted
+dwell-to-correlation ratio grows as $2\cosh 2I$, so in dwell-time units
+the rule tightens for driven devices; we quote it at $I{=}0$),
 \begin{equation}
 \rzero \;=\; 2 f_0 \Delta t \;=\; \Delta t/\tauc(0)\big|_{\delta\Delta=0}.
 \end{equation}
@@ -236,23 +245,25 @@ telegraph regime~\cite{safranski2021nanosecond,hayakawa2021nanosecond}.
 \label{sec:modes}
 In \textbf{settle mode} (batch-style inference), the input is applied and
 the device relaxes for an interval $t_s = \rho\,\tauc(0)$ before the first
-of $T$ reads taken $\Delta t$ apart. Physically, an idle device
-equilibrates to $p = 1/2$, \emph{not} to the upcoming input's stationary
-law; the settle relaxes it toward $p_{\mathrm{eq}}(I)$ with the same time
-constant $\tauc(I)$, so the first read carries a residual bias
-$\propto e^{-\rho \cosh I}$. We simulate this relaxation explicitly---the
-settle is a propagator step from the device's actual prior state---and
-sweep $\rho$ to find the requirement empirically. Throughput accounting
-charges $\rho$ per input: settle-mode throughput is
-$1/(T \rzero + \rho)$ images per $\tauc$, bounded by $1/\rho$ however fast
-the reads are. In \textbf{streaming mode} the devices are never idle:
-state persists from each input to the next (throughput $1/(T\rzero)$).
-In the limit of perfect settling ($\rho \to \infty$), a single settle-mode
-read per input is a draw from the stationary law
-Eq.~\eqref{eq:peq}---single-shot accuracy is then exactly
-rate-independent, a useful simulator sanity check rather than a deep
-result; the empirical question, answered below, is how large $\rho$ must
-be and what the $T$ correlated reads cost.
+of $T$ reads taken $\Delta t$ apart. A long-idle device equilibrates to
+$p = 1/2$, \emph{not} to the upcoming input's stationary law; in
+continuous operation the prior state is the previous input's final
+state. In either case the settle relaxes the device toward
+$p_{\mathrm{eq}}(I)$ with time constant $\tauc(I)$: starting from idle,
+the first read carries a residual bias
+$-\tfrac{1}{2}\tanh(I)\, e^{-\rho \cosh I}$. We simulate the relaxation
+explicitly---the settle is a propagator step from the device's actual
+prior state, so what it erases is set by $\rho$, not assumed---and sweep
+$\rho$ to find the requirement empirically. Throughput accounting charges
+$\rho$ per input: settle-mode throughput is $1/((T{-}1)\rzero + \rho)$
+images per $\tauc$, bounded by $1/\rho$ however fast the reads are. In
+\textbf{streaming mode} the devices are never idle: state persists from
+each input to the next (throughput $1/(T\rzero)$). Note that a single
+settled read never invokes the inter-read interval at all: settle-mode
+$T{=}1$ accuracy depends only on $\rho$ by construction, and its
+flatness across $\rzero$ is a consistency check rather than a finding;
+the empirical content of settle mode is the $\rho$ requirement and the
+cost of the $T{>}1$ correlated reads.
 
 \subsection{Network and training}
 We use a $784{-}256{-}128{-}10$ MLP with stochastic bipolar hidden
@@ -276,16 +287,19 @@ set is used only for reported numbers. Training: 30 epochs, Adam
 ($T{=}1$) and $97.8\%$ ($T{=}32$) on MNIST. Sweeps cover $\rzero \in
 [0.02, 10]$ and $T \in \{1,\dots,64\}$ with 3--5 thermal seeds per point
 (binomial SE on the 10k test set is $\pm0.2$--$0.5$ points; error bars
-report seed std). Baseline findings replicate across five independently
-trained networks; correlation-aware results average three training seeds
+report seed std). Ideal-randomness anchors replicate across five
+independently trained networks, and key E2/E3 operating points were
+re-evaluated on four additional independently trained networks
+([XNETS]); correlation-aware results average three training seeds
 per configuration (except $\rzero^{\mathrm{train}}{=}0.1$, one seed).
 Streaming is evaluated as true per-lane sequential streams: the test set
 is split into 100--200 independent lanes, each preceded by unscored
 warm-up images from the training pool so that scored images are in steady
-state; measured accuracy is invariant to lane count (72.3\%, 72.1\%,
-71.7\%, 72.3\% at 50/100/200/500 lanes for the same operating point),
-confirming the protocol. Every result file records its git revision, and
-runs are reused only when revisions match. The simulator's stationary
+state; measured accuracy is invariant to lane count ([LANEINV] at
+50/100/200/500 lanes for the same operating point and warm-up),
+confirming the protocol. Every result file records its git revision;
+runs are reused only when the simulator source is unchanged across the
+recorded revisions. The simulator's stationary
 law, autocorrelation decay at zero and nonzero bias, settle-relaxation
 distribution, and variant behaviors are validated by unit tests against
 Eqs.~\eqref{eq:peq}--\eqref{eq:propagator}. All experiments run on CPU in
@@ -312,19 +326,22 @@ stale state.}
 over thermal seeds; dotted: ideal-randomness anchors; dashed vertical:
 the $2\tau_d$ rule, $\rzero = 4$). \textbf{Left:} settle mode
 ($\rho{=}4$) is nearly rate-independent. \textbf{Right:} steady-state
-streaming collapses; $T{=}1$ reaches chance below $\rzero \approx 0.1$.}
+streaming collapses; $T{=}1$ reaches chance below $\rzero \approx 0.05$.}
 \label{fig:e2}
 \end{figure*}
 
 \subsection{Mode, not rate (E2)}
 Fig.~\ref{fig:e2} is the central result. \textbf{Settle mode:} with
 $\rho = 4$, single-read accuracy is flat at $96.90\%$ across the entire
-sweep, and $T{=}32$ accuracy falls only $97.73\%\to97.12\%$ at
-$\rzero{=}0.02$---$200\times$ past the rule. The settle sweep locates the
-actual re-equilibration requirement: at $\rzero{=}0.02$, $T{=}1$ accuracy
-is $92.9\%$, $96.6\%$, $96.9\%$, $96.8\%$ for $\rho = 1, 2, 4, 8$---a
-settle of $\approx 4\tauc$ suffices and $\approx 1\tauc$ measurably does
-not. The residual $T{=}32$ loss is the effective-sample-size cost of
+sweep---necessarily so, since a single settled read never invokes the
+inter-read interval (Sec.~\ref{sec:modes}); its exact flatness is a
+consistency check, not a finding. The empirical content is twofold. The
+settle sweep locates the actual re-equilibration requirement: single-read
+accuracy is $92.9\%$, $96.6\%$, $96.9\%$, $96.8\%$ for
+$\rho = 1, 2, 4, 8$---a settle of $\approx 4\tauc$ suffices and
+$\approx 1\tauc$ measurably does not. And the correlated-read cost is
+small: $T{=}32$ accuracy falls only $97.73\%\to97.12\%$ at
+$\rzero{=}0.02$---$200\times$ past the rule. The residual $T{=}32$ loss is the effective-sample-size cost of
 correlated averaging~\cite{sokal1997monte}: stale within-input reads
 shrink $T$ toward an effective $T_{\mathrm{eff}}$, and the floor---the
 $T{=}1$ anchor---is high.
@@ -332,51 +349,64 @@ $T{=}1$ anchor---is high.
 \textbf{Streaming:} steady-state accuracy collapses, and far harder than
 a warm-start-contaminated protocol would suggest. Single-shot accuracy is
 $96.7\%$ at $\rzero{=}2$, $92.7\%$ at $1$, $68.6\%$ at $0.5$, $27.5\%$ at
-$0.2$, and chance ($\approx 10\%$) at $\rzero \leq 0.1$: each input
-inherits the previous input's activation pattern through the device
-state. Averaging buys roughly a decade per $\sim$$16\times$ increase in
-$T$ (90\%-crossings at $\rzero \approx 0.9, 0.35, 0.13$ for
-$T = 1, 8, 32$), but at $\rzero = 0.02$ even $T{=}32$ retains only
+$0.2$, $14.9\%$ at $0.1$, and chance ($\approx 10\%$) at
+$\rzero \leq 0.05$: each input inherits the previous input's activation
+pattern through the device state. Averaging buys roughly an order of
+magnitude in $\rzero$ per $32\times$ increase in $T$ (90\%-crossings at
+$\rzero \approx 0.93, 0.33, 0.09$ for $T = 1, 8, 32$), but at
+$\rzero = 0.02$ even $T{=}32$ retains only
 $28.1\%$. The same qualitative structure holds for the
 bias-independent-rate variant---collapse thresholds shift roughly
-$2$--$4\times$ \emph{higher} ($T{=}32$ falls to $53.8\%$ already at
+$2\times$ \emph{higher} ($T{=}32$ falls to $53.8\%$ already at
 $\rzero{=}0.1$, vs.\ $94.7\%$ for the Arrhenius device)---showing (i) the
 collapse is generic staleness, not a parameterization artifact, and (ii)
 the input-dependent rate boost $\cosh I$ of barrier-type devices is
 \emph{protective}: strongly driven neurons refresh fastest exactly where
 it matters. Fashion-MNIST reproduces the full pattern: settle-mode $T{=}32$ falls
-only $88.1\%\to87.0\%$ at $\rzero{=}0.02$, while steady-state streaming
+only $88.2\%\to87.0\%$ at $\rzero{=}0.02$, while steady-state streaming
 falls to $30.2\%$ ($T{=}32$) and to chance ($T{=}1$).
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.9\textwidth]{fig_e3_hetero}
-\caption{\textbf{Left:} whether dwell-time dispersion hurts or rescues
-streaming depends on the fixed population statistic: median-fixed
-(solid) adds a slow tail and degrades; mean-$\tauc$-fixed (dashed) adds
-fast devices and rescues ($T{=}32$, 5 chips, streaming). \textbf{Right:}
-a single effective-refresh parameter approximately collapses all cells.}
+\caption{\textbf{Left:} apparent effect of dwell-time dispersion depends
+on the fixed population statistic: median-fixed (solid) degrades;
+mean-$\tauc$-fixed (dashed) appears to rescue ($T{=}32$, 5 chips,
+streaming). \textbf{Right:} the rescue is the centering's uniform rate
+offset in disguise: accuracy is predicted by the baseline ($\sigma_\Delta
+= 0$) curve evaluated at the median-device effective ratio
+$\rzero\, e^{\sigma_\Delta^2/2}$ (mean-$\tauc$) or $\rzero$ (median),
+with dispersion contributing only a small residual penalty.}
 \label{fig:e3}
 \end{figure*}
 
-\subsection{The fast quantile governs variability (E3)}
+\subsection{Centering, not dispersion, governs variability (E3)}
 Because dwell time is exponential in the barrier offset, ``add
 dispersion'' is ambiguous until one says which statistic is held fixed.
 Fig.~\ref{fig:e3} (left) shows both fabrication corners at fixed
-$\rzero$: with the \emph{median} device fixed, dispersion grows the slow
-tail (and the mean correlation time, by Jensen's inequality) and accuracy
-degrades ($72.0\%\to67.5\%$ at $\rzero{=}0.05$,
-$\sigma_\Delta{:}\,0\to1.5$); with the \emph{mean} correlation time
-fixed, the same dispersion supplies a fast sub-population and accuracy
-\emph{rises} dramatically ($72.0\%\to94.4\%$). The two corners are
-reconciled by a single scalar: the population-averaged per-query refresh
-$\mathbb{E}_{\delta\Delta}[1-e^{-\Delta t/\tau}]$, which approximately
-collapses every $(\rzero, \sigma_\Delta, \mathrm{centering})$ cell onto
-one curve (Fig.~\ref{fig:e3}, right). The engineering reading inverts
-the usual uniformity discussion~\cite{zhang2025automatic}: for
-overclocked streaming operation, what matters is not tight uniformity per
-se but the \emph{fast quantile} of the dwell-time distribution---a few
-fast devices per layer carry the network.
+$\rzero$: with the \emph{median} device fixed, accuracy degrades
+($72.0\%\to67.5\%$ at $\rzero{=}0.05$, $\sigma_\Delta{:}\,0\to1.5$);
+with the \emph{mean} correlation time fixed, it rises dramatically
+($72.0\%\to94.4\%$). The resolution is that mean-$\tauc$ centering is
+median centering plus a \emph{uniform} rate multiplier
+$e^{\sigma_\Delta^2/2}$ ($3.1\times$ at $\sigma_\Delta = 1.5$) applied to
+every device. Substituting the median-device effective sampling ratio
+$\rzero^{\mathrm{eff}} = \rzero\, e^{\sigma_\Delta^2/2}$ into the
+dispersion-free baseline curve of Fig.~\ref{fig:e2} predicts the
+mean-$\tauc$ results to within a few points (e.g.\
+$\rzero^{\mathrm{eff}} \approx 0.15$ predicts $\gtrsim 95\%$; measured
+$94.4\%$), so the uniform offset explains essentially all of the apparent
+rescue, with dispersion itself contributing a residual \emph{penalty} of
+1--5 points in both corners---the slow tail costs more than the fast tail
+buys. The engineering reading: a device specification for overclocked
+streaming must pin the \emph{central fluctuation rate}, and because of
+the exponential barrier dependence, ``mean $\tauc$'' and ``median
+device'' differ by $e^{\sigma_\Delta^2/2}$---a larger effect than the
+dispersion the specification would nominally
+constrain~\cite{zhang2025automatic}. Population-level diversity of
+superparamagnetic devices has been exploited as a computational
+resource~\cite{mizrahi2018neural}; here, for a fixed trained network, it
+is a second-order cost.
 
 \begin{figure}[t]
 \centering
@@ -392,12 +422,14 @@ Networks trained with the telegraph source active learn representations
 that survive staleness (Fig.~\ref{fig:e4}). At $T{=}32$ streaming, the
 network trained at $\rzero^{\mathrm{train}}{=}0.2$ holds $84.6\%$ at
 $\rzero{=}0.02$ where the ideal-trained baseline retains $28.1\%$---a
-$+57$-point recovery costing $3.3$ points at nominal speed ($94.5\%$
+$+56.5$-point recovery costing $3.3$ points at nominal speed ($94.5\%$
 vs.\ $97.8\%$); the $\rzero^{\mathrm{train}}{=}0.5$ network trades less
-nominal accuracy ($96.6\%$) for a smaller deep-overclock rescue. At
-$T{=}1$ the rescue is partial---$70.6\%$ vs.\ $27.5\%$ at
-$\rzero{=}0.2$---so training and averaging compose rather than
-substitute. This extends multi-sample (``sample-aware'')
+nominal accuracy ($96.6\%$, a $1.2$-point cost) for a smaller
+deep-overclock rescue. At $T{=}1$ the rescue is partial---the same
+$\rzero^{\mathrm{train}}{=}0.2$ network reaches $84.1\%$ vs.\ the
+baseline's $27.5\%$ at $\rzero{=}0.2$, but no trained network escapes
+the deep-overclock collapse at $T{=}1$---so training and averaging
+compose rather than substitute. This extends multi-sample (``sample-aware'')
 training~\cite{ghantasala2026sampling} along the temporal axis: what is
 learned here is robustness to \emph{correlation between} samples, not
 benefit from their number.
@@ -424,8 +456,8 @@ $4.0\times$ at $95\%$ (correlation-aware single-shot streaming at
 $\rzero{=}1$: $95.6\%$), and $8.0\times$ at $90\%$ (correlation-aware
 single-shot at $\rzero{=}0.5$: $92.5\%$). These are threshold statements
 on a finite grid---the conceded accuracy at the $90\%$ target is
-$2.5$ points below the bar-clearing rule point---and they assume readout
-electronics are not limiting. For a millisecond-class device
+$4.4$ points below the bar-clearing rule point ($96.9\%$)---and they
+assume readout electronics are not limiting. For a millisecond-class device
 ($\tauc \sim 10$\,ms), the rule-compliant optimum is $\sim$25
 single-read classifications/s; the frontier makes $\sim$100/s available
 at $\geq$95\% accuracy and $\sim$200/s at $\geq$90\% from the same
@@ -451,9 +483,12 @@ for classification inference it is workload-dependent: batch-style
 provided each input is given its $\approx 4\tauc$ settle---which becomes
 the real throughput cost. (ii) Streaming pipelines face a genuine
 boundary; it is moved by correlation-aware training and by sample
-averaging, not by fabrication uniformity. (iii) If overclocked streaming
-is the target, device populations should be specified by their fast
-dwell-time quantile rather than their mean. (iv) Barrier-type
+averaging, not by fabrication uniformity. (iii) A device specification
+for overclocked operation must state \emph{which} population statistic it
+pins: because dwell time is exponential in the barrier, mean-$\tauc$ and
+median-device conventions differ by $e^{\sigma_\Delta^2/2}$ in central
+rate---a larger effect than the dispersion the specification would
+nominally constrain. (iv) Barrier-type
 (Arrhenius) devices tolerate overclocking better than
 bias-independent-rate devices at matched $\tauc$, because strong inputs
 buy fast refresh exactly where decisions are made.
@@ -472,8 +507,9 @@ convolutional networks and temperature drift are natural next steps.
 The price of violating the sMTJ sampling rule is not a wall but a fork.
 Batch-style inference with a measured $\approx 4\tauc$ per-input settle
 tolerates $200\times$ faster-than-rule sampling at under one accuracy
-point; steady-state streaming collapses to chance, is governed by the
-fast quantile of the device population, and is largely rescued by
+point; steady-state streaming collapses to chance, is insensitive to
+fabrication-dispersion remedies (whose apparent effects reduce to the
+centering convention), and is largely rescued by
 correlation-aware training. Treating the sampling ratio as a design
 variable converts device autocorrelation into usable throughput---up to
 $2$--$8\times$ past the rule-compliant optimum depending on the accuracy
