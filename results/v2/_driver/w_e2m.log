@@ -23,3 +23,24 @@ e2ct_mnist_r0.2_T1_ns0.json 0.1214
 e2ct_mnist_r0.2_T1_ns1.json 0.1233
 e2ct_mnist_r0.2_T1_ns2.json 0.1252
 e2ct_mnist_r0.2_T32_ns0.json 0.9511
+e2ct_mnist_r0.2_T32_ns1.json 0.9542
+e2ct_mnist_r0.2_T32_ns2.json 0.9522
+e2ct_mnist_r0.1_T1_ns0.json 0.1022
+e2ct_mnist_r0.1_T1_ns1.json 0.1042
+e2ct_mnist_r0.1_T1_ns2.json 0.107
+e2ct_mnist_r0.1_T32_ns0.json 0.5379
+e2ct_mnist_r0.1_T32_ns1.json 0.5388
+e2ct_mnist_r0.1_T32_ns2.json 0.5359
+e2ct_mnist_r0.05_T1_ns0.json 0.0983
+e2ct_mnist_r0.05_T1_ns1.json 0.0968
+e2ct_mnist_r0.05_T1_ns2.json 0.098
+e2ct_mnist_r0.05_T32_ns0.json 0.2078
+e2ct_mnist_r0.05_T32_ns1.json 0.2011
+e2ct_mnist_r0.05_T32_ns2.json 0.2084
+e2ct_mnist_r0.02_T1_ns0.json 0.1029
+e2ct_mnist_r0.02_T1_ns1.json 0.1003
+e2ct_mnist_r0.02_T1_ns2.json 0.101
+e2ct_mnist_r0.02_T32_ns0.json 0.1398
+e2ct_mnist_r0.02_T32_ns1.json 0.1415
+e2ct_mnist_r0.02_T32_ns2.json 0.1396
+phase 2 complete in 168s

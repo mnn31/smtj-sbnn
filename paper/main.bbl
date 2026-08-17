@@ -57,6 +57,17 @@ D.~Vodenicarevic, N.~Locatelli, A.~Mizrahi, J.~S. Friedman, A.~F. Vincent,
   with superparamagnetic tunnel junctions for unconventional computing,''
   \emph{Physical Review Applied}, vol.~8, p. 054045, 2017.
 
+\bibitem{sutton2020autonomous}
+B.~Sutton, R.~Faria, L.~A. Ghantasala, R.~Jaiswal, K.~Y. Camsari, and S.~Datta,
+  ``Autonomous probabilistic coprocessing with petaflips per second,''
+  \emph{IEEE Access}, vol.~8, pp. 157\,238--157\,252, 2020, arXiv:1907.09664.
+
+\bibitem{kaiser2022hardware}
+J.~Kaiser, W.~A. Borders, K.~Y. Camsari, S.~Fukami, H.~Ohno, and S.~Datta,
+  ``Hardware-aware in situ learning based on stochastic magnetic tunnel
+  junctions,'' \emph{Physical Review Applied}, vol.~17, p. 014016, 2022,
+  arXiv:2102.05137.
+
 \bibitem{safranski2021nanosecond}
 C.~Safranski, J.~Kaiser, P.~Trouilloud, P.~Hashemi, G.~Hu, and J.~Z. Sun,
   ``Demonstration of nanosecond operation in stochastic magnetic tunnel
@@ -99,16 +110,31 @@ S.~Sabyasachi, W.~Al~Misba, Y.~Shao, P.~Khalili~Amiri, and J.~Atulasimha,
   ``Quantized artificial neural networks implemented with spintronic stochastic
   computing,'' 2025, arXiv:2504.06414.
 
+\bibitem{alaghi2013survey}
+A.~Alaghi and J.~P. Hayes, ``Survey of stochastic computing,'' \emph{ACM
+  Transactions on Embedded Computing Systems}, vol.~12, no.~2s, pp. 1--19,
+  2013.
+
+\bibitem{alaghi2013exploiting}
+------, ``Exploiting correlation in stochastic circuit design,'' in \emph{IEEE
+  31st International Conference on Computer Design (ICCD)}, 2013, pp. 39--46.
+
+\bibitem{ghantasala2026sampling}
+S.~Ghantasala, A.~Li, A.~Jaiswal, B.~Behin-Aein, I.~Makin, S.~Sen, and
+  S.~Datta, ``Improving deep neural network performance through sampling,''
+  \emph{npj Unconventional Computing}, 2026, arXiv:2507.07763.
+
+\bibitem{sokal1997monte}
+A.~D. Sokal, ``Monte carlo methods in statistical mechanics: Foundations and
+  new algorithms,'' in \emph{Functional Integration: Basics and
+  Applications}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 1997, pp.
+  131--192.
+
 \bibitem{timcheck2022optimal}
 J.~Timcheck, J.~Kadmon, K.~Boahen, and S.~Ganguli, ``Optimal noise level for
   coding with tightly balanced networks of spiking neurons in the presence of
   transmission delays,'' \emph{PLOS Computational Biology}, vol.~18, no.~10, p.
   e1010593, 2022.
-
-\bibitem{peng2020dnn}
-X.~Peng, S.~Huang, H.~Jiang, A.~Lu, and S.~Yu, ``{DNN+NeuroSim V2.0}: An
-  end-to-end benchmarking framework for compute-in-memory accelerators for
-  on-chip training,'' 2020, arXiv:2003.06471.
 
 \bibitem{courbariaux2015binaryconnect}
 M.~Courbariaux, Y.~Bengio, and J.-P. David, ``{BinaryConnect}: Training deep

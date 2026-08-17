@@ -22,3 +22,18 @@ e4_mnist_tr0.1_s0_test_er0.05_T1_ns0.json 0.5707
 e4_mnist_tr0.1_s0_test_er0.05_T1_ns1.json 0.569
 e4_mnist_tr0.1_s0_test_er0.05_T1_ns2.json 0.5677
 e4_mnist_tr0.1_s0_test_er0.05_T8_ns0.json 0.8242
+e4_mnist_tr0.1_s0_test_er0.05_T8_ns1.json 0.8203
+e4_mnist_tr0.1_s0_test_er0.05_T8_ns2.json 0.8241
+e4_mnist_tr0.1_s0_test_er0.05_T32_ns0.json 0.9118
+e4_mnist_tr0.1_s0_test_er0.05_T32_ns1.json 0.9125
+e4_mnist_tr0.1_s0_test_er0.05_T32_ns2.json 0.9103
+e4_mnist_tr0.1_s0_test_er0.02_T1_ns0.json 0.3282
+e4_mnist_tr0.1_s0_test_er0.02_T1_ns1.json 0.3239
+e4_mnist_tr0.1_s0_test_er0.02_T1_ns2.json 0.3303
+e4_mnist_tr0.1_s0_test_er0.02_T8_ns0.json 0.6156
+e4_mnist_tr0.1_s0_test_er0.02_T8_ns1.json 0.6154
+e4_mnist_tr0.1_s0_test_er0.02_T8_ns2.json 0.6187
+e4_mnist_tr0.1_s0_test_er0.02_T32_ns0.json 0.8588
+e4_mnist_tr0.1_s0_test_er0.02_T32_ns1.json 0.8553
+e4_mnist_tr0.1_s0_test_er0.02_T32_ns2.json 0.8567
+phase 4 complete in 158s
