@@ -161,4 +161,9 @@ Y.~LeCun, L.~Bottou, Y.~Bengio, and P.~Haffner, ``Gradient-based learning
 H.~Xiao, K.~Rasul, and R.~Vollgraf, ``Fashion-{MNIST}: a novel image dataset
   for benchmarking machine learning algorithms,'' 2017, arXiv:1708.07747.
 
+\bibitem{mizrahi2018neural}
+A.~Mizrahi, T.~Hirtzlin, A.~Fukushima, H.~Kubota, S.~Yuasa, J.~Grollier, and
+  D.~Querlioz, ``Neural-like computing with populations of superparamagnetic
+  basis functions,'' \emph{Nature Communications}, vol.~9, p. 1533, 2018.
+
 \end{thebibliography}

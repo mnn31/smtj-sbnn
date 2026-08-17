@@ -371,14 +371,15 @@ set is used only for reported numbers. Training: 30 epochs, Adam
 report seed std). Ideal-randomness anchors replicate across five
 independently trained networks, and key E2/E3 operating points were
 re-evaluated on four additional independently trained networks
-([XNETS]); correlation-aware results average three training seeds
+(agreement within 0.4 points, worst case at the collapse cliff);
+correlation-aware results average three training seeds
 per configuration (except $\rzero^{\mathrm{train}}{=}0.1$, one seed).
 Streaming is evaluated as true per-lane sequential streams: the test set
 is split into 100--200 independent lanes, each preceded by unscored
 warm-up images from the training pool so that scored images are in steady
-state; measured accuracy is invariant to lane count ([LANEINV] at
-50/100/200/500 lanes for the same operating point and warm-up),
-confirming the protocol. Every result file records its git revision;
+state; measured accuracy is invariant to lane count (72.6\%, 72.2\%,
+72.2\%, 72.1\% at 50/100/200/500 lanes for the same operating point and
+warm-up), confirming the protocol. Every result file records its git revision;
 runs are reused only when the simulator source is unchanged across the
 recorded revisions. The simulator's stationary
 law, autocorrelation decay at zero and nonzero bias, settle-relaxation
@@ -504,7 +505,9 @@ that survive staleness (Fig.~\ref{fig:e4}). At $T{=}32$ streaming, the
 network trained at $\rzero^{\mathrm{train}}{=}0.2$ holds $84.6\%$ at
 $\rzero{=}0.02$ where the ideal-trained baseline retains $28.1\%$---a
 $+56.5$-point recovery costing $3.3$ points at nominal speed ($94.5\%$
-vs.\ $97.8\%$); the $\rzero^{\mathrm{train}}{=}0.5$ network trades less
+vs.\ $97.8\%$; the cost is identical when both are evaluated at the
+rule-compliant $\rzero{=}4$, so it is not an artifact of the comparison
+point); the $\rzero^{\mathrm{train}}{=}0.5$ network trades less
 nominal accuracy ($96.6\%$, a $1.2$-point cost) for a smaller
 deep-overclock rescue. At $T{=}1$ the rescue is partial---the same
 $\rzero^{\mathrm{train}}{=}0.2$ network reaches $84.1\%$ vs.\ the
