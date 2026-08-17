@@ -7,6 +7,9 @@ correlation time, Camsari et al. arXiv 2304.05949) as a hard design constraint.
 We treat it as a **continuous knob**: sweep the sampling ratio
 `r = Δt_sample / τ_corr` from the i.i.d. regime (r ≫ 1) down to heavy staleness
 (r ≪ 1) and measure where stochastic-binary-NN classification actually fails.
+(Citation correction 2026-08-17: the 2τ decorrelation statement is from
+Daniels et al., arXiv:1911.11204 — verified against the PDF; it is NOT in
+2304.05949. See docs/physics_params.md for all verified parameters.)
 Deliverable: accuracy-vs-r curves and a throughput–accuracy Pareto that tells a
 hardware designer how far past the 2τ rule they can clock a given device.
 
