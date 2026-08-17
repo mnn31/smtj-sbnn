@@ -1,0 +1,1 @@
+{"dataset": "fashion", "r0": 10, "T": 8, "streaming": true, "sigma_delta": 0.0, "chip_seed": 0, "noise_seed": 2, "acc": 0.8848, "seconds": 3.0, "git": "dbd3539"}

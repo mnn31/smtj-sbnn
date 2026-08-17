@@ -37,19 +37,24 @@ def main(dataset="mnist"):
             train(dataset=dataset, epochs=30, seed=0, device="cpu",
                   ckpt_name=name, source=src)
         model = load_checkpoint(ckpt)
-        for er0 in EVAL_R0:
-            for ns in NOISE_SEEDS:
-                er0_tag = "inf" if np.isinf(er0) else er0
-                path = OUT / f"{dataset}_train{tr0}_eval{er0_tag}_ns{ns}.json"
-                if path.exists():
-                    continue
-                esrc = TelegraphSource(r0=er0, noise_seed=ns, streaming=False)
-                acc = evaluate(model, loader, esrc, T=T)
-                path.write_text(json.dumps(
-                    {"dataset": dataset, "train_r0": tr0, "eval_r0": str(er0_tag),
-                     "noise_seed": ns, "T": T, "acc": acc}))
-                print(f"train_r0={tr0} eval_r0={er0_tag} ns={ns}: {acc:.4f}",
-                      flush=True)
+        for streaming in [True, False]:
+            mode = "stream" if streaming else "reset"
+            for er0 in EVAL_R0:
+                for ns in NOISE_SEEDS:
+                    er0_tag = "inf" if np.isinf(er0) else er0
+                    path = OUT / (f"{dataset}_train{tr0}_eval{er0_tag}"
+                                  f"_ns{ns}_{mode}.json")
+                    if path.exists():
+                        continue
+                    esrc = TelegraphSource(r0=er0, noise_seed=ns,
+                                           streaming=streaming)
+                    acc = evaluate(model, loader, esrc, T=T)
+                    path.write_text(json.dumps(
+                        {"dataset": dataset, "train_r0": tr0,
+                         "eval_r0": str(er0_tag), "noise_seed": ns, "T": T,
+                         "acc": acc, "streaming": streaming}))
+                    print(f"[{mode}] train_r0={tr0} eval_r0={er0_tag} "
+                          f"ns={ns}: {acc:.4f}", flush=True)
 
 
 if __name__ == "__main__":

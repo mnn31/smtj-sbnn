@@ -1,0 +1,1 @@
+{"dataset": "mnist", "r0": 0.5, "sigma_delta": 0.25, "chip_seed": 1, "T": 32, "acc": 0.9782, "streaming": false}
