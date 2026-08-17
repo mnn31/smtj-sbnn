@@ -75,3 +75,40 @@ def test_state_persists_across_calls():
     assert not np.array_equal(s1, src.state[0])
     src.reset_batch()
     assert src.state == {}
+
+
+def test_noise_aware_training_gradient_flows():
+    import torch as _t
+    from smtjnn.rng import IdealSource
+    model = SBNN((10, 8, 4))
+    model.train()
+    x = _t.randn(3, 10)
+    out = model(x, source=IdealSource(seed=0))
+    out.sum().backward()
+    grads = [l.weight.grad for l in model.layers]
+    assert all(g is not None and g.abs().sum() > 0 for g in grads)
+
+
+def test_eval_mode_returns_pure_samples():
+    # in eval mode the hidden activations are the raw ±1 device samples,
+    # with no straight-through surrogate attached
+    from smtjnn.rng import IdealSource
+    model = SBNN((10, 8, 4))
+    model.eval()
+    x = torch.randn(3, 10)
+    captured = {}
+    orig = IdealSource.sample
+
+    def spy(self, p, layer):
+        s = orig(self, p, layer)
+        captured[layer] = s
+        return s
+
+    IdealSource.sample = spy
+    try:
+        with torch.no_grad():
+            out = model(x, source=IdealSource(seed=0))
+    finally:
+        IdealSource.sample = orig
+    assert not out.requires_grad
+    assert set(captured[0].unique().tolist()) <= {-1.0, 1.0}

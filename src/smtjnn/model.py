@@ -56,6 +56,10 @@ class SBNN(nn.Module):
                 u = torch.rand_like(i)
                 h = stochastic_sign(i, u)
             else:
-                p = 0.5 * (1.0 + torch.tanh(i))
-                h = source.sample(p, layer=li)
+                m = torch.tanh(i)
+                p = 0.5 * (1.0 + m)
+                s = source.sample(p.detach(), layer=li)
+                # straight-through: forward value is the physical sample,
+                # gradient flows through the mean activation tanh(I)
+                h = s.detach() + m - m.detach() if self.training else s
         return self.layers[-1](h)

@@ -17,7 +17,10 @@ RESULTS = Path(__file__).resolve().parents[2] / "results"
 
 
 def train(dataset="mnist", dims=(784, 256, 128, 10), epochs=30, lr=1e-3,
-          seed=0, device="cpu", ckpt_name=None, log=print):
+          seed=0, device="cpu", ckpt_name=None, source=None, log=print):
+    """`source`: optional randomness source used in the forward pass
+    (noise-aware training). Its state runs continuously across minibatches,
+    modeling devices that keep fluctuating during training."""
     torch.manual_seed(seed)
     train_dl, test_dl = loaders(dataset)
     model = SBNN(dims).to(device)
@@ -31,7 +34,7 @@ def train(dataset="mnist", dims=(784, 256, 128, 10), epochs=30, lr=1e-3,
         for x, y in train_dl:
             x, y = x.to(device), y.to(device)
             opt.zero_grad()
-            loss = loss_fn(model(x), y)
+            loss = loss_fn(model(x, source=source), y)
             loss.backward()
             opt.step()
         sched.step()
@@ -50,7 +53,8 @@ def train(dataset="mnist", dims=(784, 256, 128, 10), epochs=30, lr=1e-3,
     name = ckpt_name or f"sbnn_{dataset}_seed{seed}.pt"
     path = RESULTS / name
     torch.save({"dims": dims, "state_dict": model.state_dict(),
-                "dataset": dataset, "seed": seed, "epochs": epochs}, path)
+                "dataset": dataset, "seed": seed, "epochs": epochs,
+                "noise_aware": source is not None}, path)
     log(f"saved {path}")
     return model, path
 
