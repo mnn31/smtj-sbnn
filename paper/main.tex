@@ -390,13 +390,21 @@ idle $\sim 2\tauc$ per input to re-equilibrate, so its throughput saturates
 at $0.5$ images/$\tauc$ no matter how aggressively the $T$ passes are
 overclocked; streaming pays no idle time but suffers the collapse; and
 correlation-aware training moves the streaming curve
-(Fig.~\ref{fig:pareto}). [PARETO-NUMBERS]
+(Fig.~\ref{fig:pareto}). At a 97\% accuracy target the frontier is reset
+operation with its averaging passes overclocked ($T{=}16$ at
+$\rzero{=}0.02$: $97.1\%$ at $0.43$ images/$\tauc$), $1.7\times$ past the
+best rule-compliant operating point; at 95\%, correlation-aware
+\emph{single-shot} streaming at $\rzero{=}1$ ($95.9\%$, vs.\ $94.0\%$
+ideal-trained) doubles rule-compliant throughput; and at 90\%,
+correlation-aware single-shot streaming at $\rzero{=}0.5$ ($93.4\%$)
+reaches $2$ images/$\tauc$, a $4.0\times$ gain.
 
 Concretely, for the millisecond-class devices of the first p-bit
 demonstrations~\cite{borders2019integer}, the $2\tau$ rule limits a
-$\tauc \sim 10$\,ms device to $\sim 50$ classifications/s; the frontier in
-Fig.~\ref{fig:pareto} makes [PARETO-DEVICE] available from the same
-silicon. For nanosecond easy-plane devices~\cite{safranski2021nanosecond}
+$\tauc \sim 10$\,ms device to $\sim 50$ classifications/s at $\geq 95\%$
+accuracy; the frontier in Fig.~\ref{fig:pareto} makes 100
+classifications/s at $\geq 95\%$, or 200/s at $\geq 90\%$, available from
+the same silicon. For nanosecond easy-plane devices~\cite{safranski2021nanosecond}
 the same ratios apply to systems that are sampling-rate--limited rather
 than device-limited.
 
@@ -434,8 +442,9 @@ batch inference, a hard collapse for streaming inference---caused by
 cross-input state leakage, immune to device-variability remedies, and
 largely repaired by correlation-aware training. Treating the sampling ratio
 as a design variable rather than a constraint converts device
-autocorrelation into usable throughput, up to [PARETO-SUMMARY] beyond the
-$2\tau$-rule ceiling at matched accuracy. We hope this reframing---and the
+autocorrelation into usable throughput: $2\times$ at matched 95\% accuracy
+and $4\times$ at 90\%, beyond the $2\tau$-rule ceiling, from training
+alone. We hope this reframing---and the
 accuracy-vs-$\rzero$ curves as a device-to-application specification
 chart---is useful to both device and architecture communities.
 
