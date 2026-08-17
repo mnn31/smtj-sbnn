@@ -20,7 +20,7 @@ from smtjnn.train import load_checkpoint
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results" / "hetero"
 
-R0_GRID = [0.2, 0.5, 1.0]
+R0_GRID = [0.05, 0.1, 0.2, 0.5, 1.0]
 SIGMA_GRID = [0.0, 0.25, 0.5, 1.0, 1.5]
 CHIP_SEEDS = [0, 1, 2, 3, 4]
 T = 32
