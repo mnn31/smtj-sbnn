@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  18 AUG 2026 13:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  18 AUG 2026 13:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,7 +716,7 @@ t/fonts/type1/public/amsfonts/symbols/msbm10.pfb><./t1-formata-bold.pfb><./t1-f
 ormata-condmedium.pfb><./t1-formata-medium.pfb><./t1-formata-mediumitalic.pfb><
 ./t1-formata-regular.pfb><./t1-giovannistd-bookitalic.pfb><./t1-times-bold.pfb>
 <./t1-times-italic.pfb><./t1-times.pfb>
-Output written on main_access.pdf (7 pages, 474193 bytes).
+Output written on main_access.pdf (7 pages, 474192 bytes).
 PDF statistics:
  478 PDF objects out of 1000 (max. 8388607)
  164 compressed objects within 2 object streams
