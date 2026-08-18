@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  17 AUG 2026 19:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  18 AUG 2026 13:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -520,17 +520,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [2 <./notaglinelogo.png>]
-<figs/fig_modes.png, id=32, 2107.875pt x 1320.935pt>
-File: figs/fig_modes.png Graphic file (type png)
-<use figs/fig_modes.png>
-Package pdftex.def Info: figs/fig_modes.png  used on input line 237.
-(pdftex.def)             Requested size: 242.67355pt x 152.07565pt.
-<figs/fig_model.pdf, id=34, 245.87593pt x 184.77971pt>
+<figs/fig_modes.pdf, id=32, 253.23308pt x 159.02913pt>
+File: figs/fig_modes.pdf Graphic file (type pdf)
+<use figs/fig_modes.pdf>
+Package pdftex.def Info: figs/fig_modes.pdf  used on input line 237.
+(pdftex.def)             Requested size: 242.67355pt x 152.40413pt.
+<figs/fig_model.pdf, id=33, 245.87593pt x 184.77971pt>
 File: figs/fig_model.pdf Graphic file (type pdf)
 <use figs/fig_model.pdf>
 Package pdftex.def Info: figs/fig_model.pdf  used on input line 311.
 (pdftex.def)             Requested size: 242.67355pt x 182.37137pt.
-<figs/fig_e2_correlation.pdf, id=35, 503.02367pt x 207.91277pt>
+<figs/fig_e2_correlation.pdf, id=34, 503.02367pt x 207.91277pt>
 File: figs/fig_e2_correlation.pdf Graphic file (type pdf)
 <use figs/fig_e2_correlation.pdf>
 Package pdftex.def Info: figs/fig_e2_correlation.pdf  used on input line 321.
@@ -554,23 +554,23 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
-[3 <./figs/fig_modes.png>]
+[3 <./figs/fig_modes.pdf>]
 Underfull \hbox (badness 4156) in paragraph at lines 345--361
 []\T1/times/n/n/10 In \T1/times/b/n/10 stream-ing mode\T1/times/n/n/10 , steady
 -state ac-cu-racy col-lapses.
  []
 
-<figs/fig_e3_hetero.pdf, id=40, 505.52083pt x 192.34125pt>
+<figs/fig_e3_hetero.pdf, id=75, 505.52083pt x 192.34125pt>
 File: figs/fig_e3_hetero.pdf Graphic file (type pdf)
 <use figs/fig_e3_hetero.pdf>
 Package pdftex.def Info: figs/fig_e3_hetero.pdf  used on input line 364.
 (pdftex.def)             Requested size: 454.60649pt x 172.97345pt.
-<figs/fig_e4_training.pdf, id=41, 246.22974pt x 178.08226pt>
+<figs/fig_e4_training.pdf, id=76, 246.22974pt x 178.08226pt>
 File: figs/fig_e4_training.pdf Graphic file (type pdf)
 <use figs/fig_e4_training.pdf>
 Package pdftex.def Info: figs/fig_e4_training.pdf  used on input line 402.
 (pdftex.def)             Requested size: 242.67355pt x 175.51665pt.
-<figs/fig_pareto.pdf, id=42, 246.43506pt x 185.98991pt>
+<figs/fig_pareto.pdf, id=77, 246.43506pt x 185.98991pt>
 File: figs/fig_pareto.pdf Graphic file (type pdf)
 <use figs/fig_pareto.pdf>
 Package pdftex.def Info: figs/fig_pareto.pdf  used on input line 430.
@@ -692,33 +692,34 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4490 strings out of 467525
- 73596 string characters out of 5408440
+ 4488 strings out of 467525
+ 73582 string characters out of 5408440
  495147 words of memory out of 5000000
- 33337 multiletter control sequences out of 15000+600000
+ 33335 multiletter control sequences out of 15000+600000
  705421 words of font info for 159 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,12n,79p,790b,531s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20260301/
-share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></opt/homebrew/Cellar
-/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></o
+sfonts/cm/cmbx7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20260301/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar
+/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></o
 pt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr5.pfb></opt/homebrew/Cellar/texlive/20260301/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebrew/Cellar/texlive/
-20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homeb
-rew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/publ
-ic/amsfonts/symbols/msbm10.pfb><./t1-formata-bold.pfb><./t1-formata-condmedium.
-pfb><./t1-formata-medium.pfb><./t1-formata-mediumitalic.pfb><./t1-formata-regul
-ar.pfb><./t1-giovannistd-bookitalic.pfb><./t1-times-bold.pfb><./t1-times-italic
-.pfb><./t1-times.pfb>
-Output written on main_access.pdf (7 pages, 1055420 bytes).
+s/cm/cmmi7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20260301/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/homebrew/Cellar/texlive
+/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebr
+ew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dis
+t/fonts/type1/public/amsfonts/symbols/msbm10.pfb><./t1-formata-bold.pfb><./t1-f
+ormata-condmedium.pfb><./t1-formata-medium.pfb><./t1-formata-mediumitalic.pfb><
+./t1-formata-regular.pfb><./t1-giovannistd-bookitalic.pfb><./t1-times-bold.pfb>
+<./t1-times-italic.pfb><./t1-times.pfb>
+Output written on main_access.pdf (7 pages, 474193 bytes).
 PDF statistics:
- 447 PDF objects out of 1000 (max. 8388607)
- 139 compressed objects within 2 object streams
+ 478 PDF objects out of 1000 (max. 8388607)
+ 164 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  54 words of extra memory for PDF output out of 10000 (max. 10000000)
 

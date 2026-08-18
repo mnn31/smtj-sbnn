@@ -208,10 +208,10 @@ INPUT ./notaglinelogo.png
 INPUT ./notaglinelogo.png
 INPUT ./notaglinelogo.png
 INPUT ./notaglinelogo.png
-INPUT ./figs/fig_modes.png
-INPUT ./figs/fig_modes.png
-INPUT ./figs/fig_modes.png
-INPUT ./figs/fig_modes.png
+INPUT ./figs/fig_modes.pdf
+INPUT ./figs/fig_modes.pdf
+INPUT ./figs/fig_modes.pdf
+INPUT ./figs/fig_modes.pdf
 INPUT t1-formata-bold.tfm
 INPUT t1-formata-medium.tfm
 INPUT t1-formata-medium.tfm
@@ -284,6 +284,7 @@ INPUT ./notaglinelogo.png
 INPUT ./notaglinelogo.png
 INPUT ./notaglinelogo.png
 INPUT main_access.aux
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
