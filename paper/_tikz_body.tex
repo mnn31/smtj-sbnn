@@ -1,0 +1,70 @@
+\begin{tikzpicture}[font=\scriptsize, >=stealth]
+% --- mini network with sMTJ neurons ---
+\foreach \i in {0,1,2,3} {
+  \node[circle, draw, fill=black!8, inner sep=1.6pt] (x\i) at (0, {-0.42*\i}) {};
+}
+\foreach \i in {0,1,2} {
+  % sMTJ neuron: free layer (hatched) / barrier / fixed layer
+  \node[draw, minimum width=5.5mm, minimum height=1.3mm, inner sep=0pt,
+        fill=blue!20] (f\i) at (1.5, {-0.21 - 0.55*\i + 0.11}) {};
+  \node[draw, minimum width=5.5mm, minimum height=0.6mm, inner sep=0pt,
+        fill=black!30] at (1.5, {-0.21 - 0.55*\i - 0.02}) {};
+  \node[draw, minimum width=5.5mm, minimum height=1.3mm, inner sep=0pt,
+        fill=black!10] at (1.5, {-0.21 - 0.55*\i - 0.14}) {};
+  \node[anchor=west] at (1.85, {-0.21 - 0.55*\i})
+    {$s_{\i} = \pm 1$};
+}
+\foreach \i in {0,1,2,3} \foreach \j in {0,1,2} {
+  \draw[black!40, line width=0.3pt] (x\i.east)
+    -- ($(1.22, -0.21 - 0.55*\j)$);
+}
+\node[circle, draw, fill=black!8, inner sep=1.6pt] (y) at (3.4, -0.63) {};
+\foreach \j in {0,1,2} {
+  \draw[black!40, line width=0.3pt] (2.85, {-0.21 - 0.55*\j}) -- (y.west);
+}
+\node[anchor=west] at (3.55, -0.63) {class scores ($\times T$, averaged)};
+\node[anchor=west, text=blue!60!black] at (0.9, 0.32)
+  {sMTJ neurons: $P(+1) = \tfrac{1+\tanh I}{2}$, correlation time $\tauc(I)$};
+% --- timing diagrams ---
+\begin{scope}[yshift=-2.35cm]
+\node[anchor=west] at (-0.2, 0.55) {\textbf{settle mode}\quad
+  throughput $1/((T{-}1)\rzero + \rho)$};
+\draw[->] (-0.1, 0) -- (7.6, 0);
+\draw[fill=orange!25, draw=orange!60!black] (0.1, -0.09)
+  rectangle (1.7, 0.09);
+\node at (0.9, 0.28) {settle $\rho\,\tauc$};
+\foreach \k in {0,...,3} {
+  \draw[very thick, blue!60!black] ({1.9 + 0.38*\k}, -0.13)
+    -- ({1.9 + 0.38*\k}, 0.13);
+}
+\draw[<->] (1.9, -0.26) -- (2.28, -0.26);
+\node at (2.1, -0.44) {$\Delta t$};
+\node at (2.65, 0.28) {$T$ reads};
+\draw[fill=orange!25, draw=orange!60!black] (3.6, -0.09)
+  rectangle (5.2, 0.09);
+\node at (4.4, 0.28) {settle};
+\foreach \k in {0,...,3} {
+  \draw[very thick, blue!60!black] ({5.4 + 0.38*\k}, -0.13)
+    -- ({5.4 + 0.38*\k}, 0.13);
+}
+\node at (0.9, -0.44) {input $n$};
+\node at (4.4, -0.44) {input $n{+}1$};
+\end{scope}
+\begin{scope}[yshift=-4.15cm]
+\node[anchor=west] at (-0.2, 0.62) {\textbf{streaming mode}\quad
+  throughput $1/(T\rzero)$, state carries over};
+\draw[->] (-0.1, 0) -- (7.6, 0);
+\foreach \k in {0,...,17} {
+  \draw[very thick, blue!60!black] ({0.2 + 0.38*\k}, -0.13)
+    -- ({0.2 + 0.38*\k}, 0.13);
+}
+\draw[decorate, decoration={brace, mirror, amplitude=3pt}]
+  (0.15, -0.2) -- (1.4, -0.2);
+\node at (0.78, -0.48) {input $n$};
+\draw[decorate, decoration={brace, mirror, amplitude=3pt}]
+  (1.65, -0.2) -- (2.9, -0.2);
+\node at (2.28, -0.48) {input $n{+}1$};
+\draw[->, red!70!black] (1.35, 0.28) to[bend left=25] (1.75, 0.28);
+\node[anchor=west, red!70!black] at (3.3, 0.28) {stale state leaks};
+\end{scope}
+\end{tikzpicture}

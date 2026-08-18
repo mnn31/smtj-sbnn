@@ -30,7 +30,7 @@ RULE_R0 = 4.0
 
 plt.rcParams.update({
     "font.size": 8, "font.family": "serif", "axes.linewidth": 0.6,
-    "lines.linewidth": 1.4, "figure.dpi": 200,
+    "lines.linewidth": 1.4, "figure.dpi": 300,
 })
 
 
