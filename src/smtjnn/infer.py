@@ -1,4 +1,5 @@
-"""Inference protocols (v2, post-audit).
+# Author: Manan Gupta <mnn@yogins.com>
+"""Inference protocols.
 
 Lane-stream evaluation: the test set is split into B independent lanes,
 each a true sequential stream of L = N/B images processed one at a time.

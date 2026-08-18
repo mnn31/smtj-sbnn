@@ -1,4 +1,5 @@
-"""Training (v2): validation-split monitoring, test set untouched.
+# Author: Manan Gupta <mnn@yogins.com>
+"""Training: validation-split monitoring, test set untouched.
 
 `source`: optional randomness source used in the forward pass
 (correlation-aware training). Device state runs continuously across

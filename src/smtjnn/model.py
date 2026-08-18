@@ -1,3 +1,4 @@
+# Author: Manan Gupta <mnn@yogins.com>
 """Stochastic binary MLP (p-bit style: stochastic at inference).
 
 Each hidden unit fires s = +1 with probability p = (1 + tanh(I))/2 at every

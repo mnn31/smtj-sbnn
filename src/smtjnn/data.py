@@ -1,4 +1,5 @@
-"""Dataset loading with a proper train/val/test split (v2).
+# Author: Manan Gupta <mnn@yogins.com>
+"""Dataset loading with a train/val/test split.
 
 The last 5k images of the official training set form a validation split
 used for all model-selection decisions; the 10k test set is touched only

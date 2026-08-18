@@ -1,4 +1,5 @@
-"""Telegraph-noise sMTJ neuron model (v2, post-audit).
+# Author: Manan Gupta <mnn@yogins.com>
+"""Telegraph-noise sMTJ neuron model.
 
 Each neuron is a two-state fluctuator s ∈ {−1,+1} with input-biased
 Néel–Arrhenius escape rates

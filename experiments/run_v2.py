@@ -1,4 +1,5 @@
-"""v2 experiment suite (post-audit). All results under results/v2/.
+# Author: Manan Gupta <mnn@yogins.com>
+"""Main experiment suite. All results under results/v2/.
 
 Phases (run with --phase N, resumable; existing outputs are skipped ONLY
 if their recorded git SHA matches HEAD, preventing version mixing):

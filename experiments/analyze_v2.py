@@ -1,4 +1,5 @@
-"""v2 analysis: tables + all paper figures from results/v2 only.
+# Author: Manan Gupta <mnn@yogins.com>
+"""Analysis: tables + all paper figures from results/v2.
 
 Figures:
   fig_e2_correlation  settle vs streaming accuracy vs r0 (MNIST only)

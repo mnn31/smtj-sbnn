@@ -1,4 +1,5 @@
-"""Round-2 fix batch:
+# Author: Manan Gupta <mnn@yogins.com>
+"""Supplementary verification runs:
 A. Cross-network replication of key E2 cells over model seeds 1-4.
 F. Lane-invariance at the production warmup (warm=10).
 H. Correlation-aware models evaluated at rule-compliant r0=4 (true nominal).
