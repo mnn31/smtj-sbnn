@@ -1,0 +1,1 @@
+Classification accuracy versus physically-accounted throughput for stochastic binary neural networks built from sMTJ p-bit neurons. Sampling devices faster than the standard 2-tau design rule converts device autocorrelation into usable throughput: correlation-aware training extends the Pareto frontier to 2-8x the rule-compliant optimum, depending on the accuracy target.
