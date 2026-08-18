@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  18 AUG 2026 13:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  18 AUG 2026 13:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -321,6 +321,10 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 .sty
 Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 )
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3backend/l3b
 ackend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
@@ -328,73 +332,73 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 ) (./main_access.aux)
 \openout1 = `main_access.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
 
 -- Lines per column: 56 (exact).
 \symNewLetters=\mathgroup6
 \symxsymbols=\mathgroup7
-LaTeX Font Info:    Redeclaring math symbol \ddagger on input line 12.
-LaTeX Font Info:    Redeclaring math symbol \dagger on input line 12.
+LaTeX Font Info:    Redeclaring math symbol \ddagger on input line 13.
+LaTeX Font Info:    Redeclaring math symbol \dagger on input line 13.
 \c@mv@regular=\count312
 LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
-(Font)              `operators' in the math version `regular' on input line 12.
+(Font)              `operators' in the math version `regular' on input line 13.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `regular'
-(Font)                  OT1/cmr/m/n --> T1/formata/n/n on input line 12.
+(Font)                  OT1/cmr/m/n --> T1/formata/n/n on input line 13.
 LaTeX Font Info:    Overwriting symbol font `NewLetters' in version `regular'
-(Font)                  T1/times/n/it --> T1/formata/n/it on input line 12.
+(Font)                  T1/times/n/it --> T1/formata/n/it on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `regular'
-(Font)                  T1/formata/n/n --> T1/formata/n/n on input line 12.
+(Font)                  T1/formata/n/n --> T1/formata/n/n on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `regular'
-(Font)                  OT1/cmr/m/it --> T1/formata/n/it on input line 12.
+(Font)                  OT1/cmr/m/it --> T1/formata/n/it on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `regular'
-(Font)                  OT1/cmr/bx/n --> T1/formata/m/n on input line 12.
+(Font)                  OT1/cmr/bx/n --> T1/formata/m/n on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `regular'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 12.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 13.
 \c@mv@medium=\count313
 LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
-(Font)              `operators' in the math version `medium' on input line 12.
+(Font)              `operators' in the math version `medium' on input line 13.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `medium'
-(Font)                  OT1/cmr/m/n --> T1/formata/m/n on input line 12.
+(Font)                  OT1/cmr/m/n --> T1/formata/m/n on input line 13.
 LaTeX Font Info:    Overwriting symbol font `NewLetters' in version `medium'
-(Font)                  T1/times/n/it --> T1/formata/m/it on input line 12.
+(Font)                  T1/times/n/it --> T1/formata/m/it on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `medium'
-(Font)                  > T1/formata/m/n on input line 12.
+(Font)                  > T1/formata/m/n on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `medium'
-(Font)                  OT1/cmr/m/it --> T1/formata/m/it on input line 12.
+(Font)                  OT1/cmr/m/it --> T1/formata/m/it on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `medium'
-(Font)                  OT1/cmr/bx/n --> T1/formata/b/n on input line 12.
+(Font)                  OT1/cmr/bx/n --> T1/formata/b/n on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `medium'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/b/n on input line 12.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/b/n on input line 13.
 \c@mv@black=\count314
 LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
-(Font)              `operators' in the math version `black' on input line 12.
+(Font)              `operators' in the math version `black' on input line 13.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `black'
-(Font)                  OT1/cmr/m/n --> T1/formata/b/n on input line 12.
+(Font)                  OT1/cmr/m/n --> T1/formata/b/n on input line 13.
 LaTeX Font Info:    Overwriting symbol font `NewLetters' in version `black'
-(Font)                  T1/times/n/it --> T1/formata/b/it on input line 12.
+(Font)                  T1/times/n/it --> T1/formata/b/it on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `black'
-(Font)                  > T1/formata/b/n on input line 12.
+(Font)                  > T1/formata/b/n on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `black'
-(Font)                  OT1/cmr/m/it --> T1/formata/b/it on input line 12.
+(Font)                  OT1/cmr/m/it --> T1/formata/b/it on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `black'
-(Font)                  OT1/cmr/bx/n --> T1/formata/b/n on input line 12.
+(Font)                  OT1/cmr/bx/n --> T1/formata/b/n on input line 13.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `black'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/b/n on input line 12.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 12
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/b/n on input line 13.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 13
 .
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/psnfss/t1ptm.
@@ -402,7 +406,7 @@ fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 LaTeX Font Info:    Trying to load font information for T1+times on input line 
-12.
+13.
  (./t1times.fd)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/context/base/mkii/s
 upp-pdf.mkii
@@ -433,16 +437,16 @@ e
 <bullet.png, id=3, 12.045pt x 35.38219pt>
 File: bullet.png Graphic file (type png)
 <use bullet.png>
-Package pdftex.def Info: bullet.png  used on input line 23.
+Package pdftex.def Info: bullet.png  used on input line 24.
 (pdftex.def)             Requested size: 5.0pt x 14.6871pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
 
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
 .fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
 
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
@@ -451,29 +455,29 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 File: bullet.png Graphic file (type png)
 <use bullet.png>
-Package pdftex.def Info: bullet.png  used on input line 51.
+Package pdftex.def Info: bullet.png  used on input line 52.
 (pdftex.def)             Requested size: 5.0pt x 14.6871pt.
-LaTeX Font Info:    Calculating math sizes for size <9.9> on input line 58.
-LaTeX Font Info:    Calculating math sizes for size <6.6> on input line 58.
+LaTeX Font Info:    Calculating math sizes for size <9.9> on input line 59.
+LaTeX Font Info:    Calculating math sizes for size <6.6> on input line 59.
 
-Overfull \hbox (9.2679pt too wide) in paragraph at lines 58--58
+Overfull \hbox (9.2679pt too wide) in paragraph at lines 59--59
 []  
  []
 
 
-Overfull \hbox (9.2679pt too wide) in paragraph at lines 58--58
+Overfull \hbox (9.2679pt too wide) in paragraph at lines 59--59
 []  
  []
 
 
-Underfull \hbox (badness 1783) in paragraph at lines 61--73
+Underfull \hbox (badness 1783) in paragraph at lines 62--74
 \T1/times/n/n/10 tional hard-ware: pseu-do-ran-dom gen-er-a-tion at Gb/s
  []
 
 <logo.png, id=4, 206.27063pt x 53.44969pt>
 File: logo.png Graphic file (type png)
 <use logo.png>
-Package pdftex.def Info: logo.png  used on input line 106.
+Package pdftex.def Info: logo.png  used on input line 107.
 (pdftex.def)             Requested size: 91.32pt x 23.66309pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -502,7 +506,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 <notaglinelogo.png, id=25, 169.38281pt x 42.91031pt>
 File: notaglinelogo.png Graphic file (type png)
 <use notaglinelogo.png>
-Package pdftex.def Info: notaglinelogo.png  used on input line 234.
+Package pdftex.def Info: notaglinelogo.png  used on input line 235.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -523,7 +527,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 <figs/fig_modes.pdf, id=32, 253.23308pt x 159.02913pt>
 File: figs/fig_modes.pdf Graphic file (type pdf)
 <use figs/fig_modes.pdf>
-Package pdftex.def Info: figs/fig_modes.pdf  used on input line 237.
+Package pdftex.def Info: figs/fig_modes.pdf  used on input line 238.
 (pdftex.def)             Requested size: 242.67355pt x 152.40413pt.
 <figs/fig_model.pdf, id=33, 245.87593pt x 184.77971pt>
 File: figs/fig_model.pdf Graphic file (type pdf)
@@ -692,13 +696,13 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4488 strings out of 467525
- 73582 string characters out of 5408440
- 495147 words of memory out of 5000000
- 33335 multiletter control sequences out of 15000+600000
+ 4571 strings out of 467525
+ 74804 string characters out of 5408440
+ 496292 words of memory out of 5000000
+ 33414 multiletter control sequences out of 15000+600000
  705421 words of font info for 159 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,12n,79p,790b,531s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,12n,79p,790b,532s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmbx7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20260301/s
@@ -716,7 +720,7 @@ t/fonts/type1/public/amsfonts/symbols/msbm10.pfb><./t1-formata-bold.pfb><./t1-f
 ormata-condmedium.pfb><./t1-formata-medium.pfb><./t1-formata-mediumitalic.pfb><
 ./t1-formata-regular.pfb><./t1-giovannistd-bookitalic.pfb><./t1-times-bold.pfb>
 <./t1-times-italic.pfb><./t1-times.pfb>
-Output written on main_access.pdf (7 pages, 474192 bytes).
+Output written on main_access.pdf (7 pages, 474210 bytes).
 PDF statistics:
  478 PDF objects out of 1000 (max. 8388607)
  164 compressed objects within 2 object streams
