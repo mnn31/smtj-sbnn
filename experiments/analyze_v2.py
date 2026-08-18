@@ -70,8 +70,9 @@ def fig_e2(ds="mnist"):
             if (T,) in e1:
                 ax.axhline(e1[(T,)][0], color=C[T], ls=":", lw=0.7, alpha=0.6)
         ax.axvline(RULE_R0, color="0.4", ls="--", lw=0.8)
-        ax.text(RULE_R0, 0.12, r" $2\tau$ rule", rotation=0, fontsize=7,
-                color="0.3", transform=ax.get_xaxis_transform())
+        ax.text(RULE_R0, 0.97, r" $2\tau$ rule ", rotation=0, fontsize=7,
+                color="0.3", ha="right", va="top",
+                transform=ax.get_xaxis_transform())
         ax.set_xscale("log")
         ax.set_xlabel(r"sampling ratio  $r_0 = \Delta t / \tau_{corr}(0)$")
         ax.set_title(title, fontsize=8)
